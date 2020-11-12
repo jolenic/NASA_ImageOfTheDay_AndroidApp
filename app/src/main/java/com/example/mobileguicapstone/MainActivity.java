@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     EditText nameBox;
     Button snackbarButton;
     Button toListView;
+    Button toDatePicker;
     String message;
 
     @Override
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         nameBox = findViewById(R.id.nameBox);
         snackbarButton = findViewById(R.id.snackbarButton);
         toListView = findViewById(R.id.toListView);
+        toDatePicker = findViewById(R.id.toDatePicker);
 
         //set clickListener for nameButton to make custom Toast greeting
         nameButton.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +69,15 @@ public class MainActivity extends AppCompatActivity {
         toListView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(listViewActivity);
+            }
+        });
+
+        //set clickListener for toDatePicker to go to DatePicker
+        final Intent datePicker = new Intent(this, DatePicker.class);
+        toDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(datePicker);
             }
         });
 
