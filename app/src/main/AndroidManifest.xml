@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NasaDailyImage"></activity>
+        <activity android:name=".NasaDailyImage" />
         <activity android:name=".DatePicker" />
         <activity android:name=".ListViewActivity" />
         <activity android:name=".MainActivity">

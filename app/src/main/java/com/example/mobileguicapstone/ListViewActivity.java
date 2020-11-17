@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -31,6 +32,17 @@ public class ListViewActivity extends AppCompatActivity {
         ListView testList = findViewById(R.id.testList);
         MyListAdapter adapter = new MyListAdapter();
         testList.setAdapter(adapter);
+
+        //Item Click Listener will pop up an alert dialog with extra info about the item
+        testList.setOnItemClickListener((list, item, position, id) -> {
+
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("More Info Placeholder")
+                    //What is the message:
+                    .setMessage("The selected item is: " + position + ".")
+                    //Show the dialog
+                    .create().show();
+        });
     }
 
     private class MyListAdapter extends BaseAdapter {
