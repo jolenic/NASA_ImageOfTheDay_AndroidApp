@@ -28,6 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Declare variables to be used
     Button nameButton;
     EditText nameBox;
     Button snackbarButton;

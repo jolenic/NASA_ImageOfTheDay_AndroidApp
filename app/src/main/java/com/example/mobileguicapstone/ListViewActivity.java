@@ -28,7 +28,8 @@ public class ListViewActivity extends AppCompatActivity {
         elements.add("Test 2");
         elements.add("Test 4");
         elements.add("OH GEEZ OH NO I LOST COUNT :(");
-        //initialize ListView tools
+
+        //initialize ListView and adapter
         ListView testList = findViewById(R.id.testList);
         MyListAdapter adapter = new MyListAdapter();
         testList.setAdapter(adapter);
@@ -45,6 +46,7 @@ public class ListViewActivity extends AppCompatActivity {
         });
     }
 
+    //private class to define MyListAdapter
     private class MyListAdapter extends BaseAdapter {
 
         @Override
