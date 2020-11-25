@@ -1,5 +1,7 @@
 package com.example.mobileguicapstone;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -70,6 +72,7 @@ public class NasaDailyImage extends AppCompatActivity {
         private String imgUrl;
         private String hdUrl;
         private String explanation;
+        private Bitmap img;
 
         @Override
         protected String doInBackground(String... args) {
@@ -97,6 +100,15 @@ public class NasaDailyImage extends AppCompatActivity {
                 explanation = String.valueOf(imageData.get("explanation"));
                 publishProgress(50);
 
+                URL url2 = new URL(imgUrl);
+                HttpURLConnection connection = (HttpURLConnection) url2.openConnection();
+                connection.connect();
+                int responseCode = connection.getResponseCode();
+                if (responseCode == 200) {
+                    img = BitmapFactory.decodeStream(connection.getInputStream());
+                }
+                publishProgress(75);
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -121,6 +133,7 @@ public class NasaDailyImage extends AppCompatActivity {
             //image.setImageResource();
             hdLink.setText(hdUrl);
             description.setText(explanation);
+            image.setImageBitmap(img);
 
             progress.setVisibility(View.INVISIBLE);
         }
