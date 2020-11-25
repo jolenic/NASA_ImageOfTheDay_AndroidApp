@@ -7,10 +7,20 @@
     tools:context=".DatePicker">
 
     <TextView
+        android:id="@+id/showDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="30dp"
         android:text="This activity will have a date picker object" />
+
+    <Button
+        android:id="@+id/datePickerFragmentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Select a Date" />
 
     <Button
         android:id="@+id/toImageOfDayButton"
