@@ -21,6 +21,7 @@ public class DatePicker extends AppCompatActivity {
     Button toImageButton;
     Button datePickerFragmentButton;
     private DatePickerDialog.OnDateSetListener dateSetListener;
+    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,12 @@ public class DatePicker extends AppCompatActivity {
         //this seems to be 1 lower than it should be for some reason, manually adding 1
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
+        date = year + "-" + (month + 1) + "-" + day;
 
 
         //Display Chosen Date
         TextView showDate = findViewById(R.id.showDate);
-        showDate.setText("Date Selected: " + year + "/" + (month + 1) + "/" + day);
+        showDate.setText("Date Selected: " + date);
 
         //initialize button to bring up date picker
         datePickerFragmentButton = findViewById(R.id.datePickerFragmentButton);
@@ -64,9 +66,10 @@ public class DatePicker extends AppCompatActivity {
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                Log.d(TAG, "onDateSet: date: " + year + "/" + month + "/" + day);
                 //changes display date to chosen date
-                showDate.setText("Date Selected: " + year + "/" + (month + 1) + "/" + day);
+                date = year + "-" + (month + 1) + "-" + day;
+                Log.d(TAG, "onDateSet: date: " + date);
+                showDate.setText("Date Selected: " + date);
             }
         };
 
