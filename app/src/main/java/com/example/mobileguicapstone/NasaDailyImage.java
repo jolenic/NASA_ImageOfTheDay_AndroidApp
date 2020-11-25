@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class NasaDailyImage extends AppCompatActivity {
 
+    final String API_KEY = "QzibVZa0WTgDvKxiYqqe7ArqM1Bbshla4QdcUtBt";
+
     ProgressBar progress;
 
     @Override
