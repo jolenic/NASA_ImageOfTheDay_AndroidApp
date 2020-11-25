@@ -20,7 +20,7 @@
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/dateDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date"
@@ -31,6 +31,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Image" />
+
+    <TextView
+        android:id="@+id/hdLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link to HD image"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/description"

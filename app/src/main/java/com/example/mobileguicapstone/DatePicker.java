@@ -34,6 +34,9 @@ public class DatePicker extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DatePicker.this, NasaDailyImage.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("date", date);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
