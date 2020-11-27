@@ -38,6 +38,8 @@ public class DatePicker extends AppCompatActivity {
         Toolbar tBar = findViewById(R.id.toolbar);
         //Load the Toolbar
         setSupportActionBar(tBar);
+        tBar.setTitle(R.string.date_toolbar_header);
+
 
         //initialize today button and set it to go to NasaDailyImage
         toImageButton = findViewById(R.id.toImageOfDayButton);
@@ -104,6 +106,14 @@ public class DatePicker extends AppCompatActivity {
             case R.id.goPick:
                 Intent intent1 = new Intent(this, DatePicker.class);
                 startActivity(intent1);
+                return true;
+            case R.id.goListView:
+                Intent intent2 = new Intent(this, ListViewActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.goImageofDay:
+                Intent intent3 = new Intent(this, NasaDailyImage.class);
+                startActivity(intent3);
                 return true;
             case R.id.menuHelp:
                 //showing alert dialog for help

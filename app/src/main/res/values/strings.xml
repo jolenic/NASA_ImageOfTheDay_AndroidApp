@@ -18,8 +18,11 @@
     <string name="list_item">List Item:</string>
     <string name="help">Help</string>
     <string name="list_item_text_goes_here">List item text goes here! :)</string>
-    <string name="image_help">- Select a date and press the button to get the title of image.\n
+    <string name="image_help">- Select a date and press the button to get the image of the day!\n
         - Click on the title (list item) to view the image and description. </string>
     <string name="image_okay">OKAY</string>
     <string name="button_text_gosearch">gosearch</string>
+    <string name="main_toolbar">Main Activity</string>
+    <string name="daily_image_toolbar_header">NASA Image</string>
+    <string name="date_toolbar_header">Choose A Date</string>
 </resources>

@@ -22,4 +22,7 @@
          - Cliquez sur le titre (élément de liste) pour afficher l\'image et la description. </string>
     <string name="image_okay">OKAY</string>
     <string name="button_text_gosearch">gosearch</string>
+    <string name="main_toolbar">L\'Activité Main</string>
+    <string name="daily_image_toolbar_header">l\'Image du Jour</string>
+    <string name="date_toolbar_header">Selectionnez le date</string>
 </resources>

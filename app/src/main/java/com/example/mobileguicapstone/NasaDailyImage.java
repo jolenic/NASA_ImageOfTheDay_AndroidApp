@@ -55,6 +55,8 @@ public class NasaDailyImage extends AppCompatActivity {
         Toolbar tBar = findViewById(R.id.toolbar);
         //Load the Toolbar
         setSupportActionBar(tBar);
+        tBar.setTitle(R.string.daily_image_toolbar_header);
+
 
         //get date from previous activity
         Bundle bundle = getIntent().getExtras();
@@ -93,6 +95,14 @@ public class NasaDailyImage extends AppCompatActivity {
             case R.id.goPick:
                 Intent intent1 = new Intent(this, DatePicker.class);
                 startActivity(intent1);
+                return true;
+            case R.id.goListView:
+                Intent intent2 = new Intent(this, ListViewActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.goImageofDay:
+                Intent intent3 = new Intent(this, NasaDailyImage.class);
+                startActivity(intent3);
                 return true;
             case R.id.menuHelp:
                 //showing alert dialog for help
