@@ -17,6 +17,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import static com.example.mobileguicapstone.R.string.main_toolbar;
+
 //The first Milestone due on 20 November requires:
 
 //The project must have a ListView somewhere to present items.
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar tBar = findViewById(R.id.toolbar);
         //Load the Toolbar
         setSupportActionBar(tBar);
-        tBar.setTitle(R.string.main_toolbar);
 
         //initialize buttons and EditText
         nameButton = findViewById(R.id.nameButton);

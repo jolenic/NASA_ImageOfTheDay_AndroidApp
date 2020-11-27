@@ -32,7 +32,6 @@ public class ListViewActivity extends AppCompatActivity {
         Toolbar tBar = findViewById(R.id.toolbar);
         //Load the Toolbar
         setSupportActionBar(tBar);
-        tBar.setTitle(R.string.date_toolbar_header);
 
         //initialize elements and populate it with sample data
         elements = new ArrayList<>();

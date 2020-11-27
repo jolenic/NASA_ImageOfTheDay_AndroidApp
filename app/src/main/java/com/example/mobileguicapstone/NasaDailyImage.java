@@ -55,7 +55,6 @@ public class NasaDailyImage extends AppCompatActivity {
         Toolbar tBar = findViewById(R.id.toolbar);
         //Load the Toolbar
         setSupportActionBar(tBar);
-        tBar.setTitle(R.string.daily_image_toolbar_header);
 
 
         //get date from previous activity
