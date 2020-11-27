@@ -6,6 +6,11 @@
     android:orientation="vertical"
     tools:context=".DatePicker">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:id="@+id/showDate"
         android:layout_width="wrap_content"
@@ -13,21 +18,19 @@
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textSize="30dp"
-        android:text="This activity will have a date picker object" />
+        android:text="@string/this_activity_will_have_a_date_picker_object" />
 
     <Button
         android:id="@+id/datePickerFragmentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Select a Date" />
+        android:text="@string/select_a_date" />
 
     <Button
         android:id="@+id/toImageOfDayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="View Image" />
-
-
+        android:text="@string/view_image" />
 </LinearLayout>

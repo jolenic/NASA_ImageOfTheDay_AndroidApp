@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/goPick"
+        android:icon="@drawable/search"
+        android:title="@string/button_text_gosearch"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/goListView"
+        android:icon="@drawable/list"
+        app:showAsAction="always"
+        android:title="ListView" />
+
+    <item
+        android:id="@+id/goImageofDay"
+        android:icon="@drawable/globe"
+        app:showAsAction="always"
+        android:title="Image of the Day" />
+
+    <item
+        android:id="@+id/menuHelp"
+        android:title="@string/help"
+        app:showAsAction="ifRoom"/>
+</menu>

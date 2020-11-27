@@ -1,15 +1,22 @@
 package com.example.mobileguicapstone;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +51,12 @@ public class NasaDailyImage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_image_main);
 
+        //Get Toolbar
+        Toolbar tBar = findViewById(R.id.toolbar);
+        //Load the Toolbar
+        setSupportActionBar(tBar);
+
+
         //get date from previous activity
         Bundle bundle = getIntent().getExtras();
         date = bundle.getString("date");
@@ -65,6 +78,48 @@ public class NasaDailyImage extends AppCompatActivity {
 
 
     } //end method onCreate()
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.image_toolbar_menu, menu);
+        return true;
+    }
+
+    /**
+     * toolbar menu item clicks
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.goPick:
+                Intent intent1 = new Intent(this, DatePicker.class);
+                startActivity(intent1);
+                return true;
+            case R.id.goListView:
+                Intent intent2 = new Intent(this, ListViewActivity.class);
+                startActivity(intent2);
+                return true;
+            case R.id.goImageofDay:
+                Intent intent3 = new Intent(this, NasaDailyImage.class);
+                startActivity(intent3);
+                return true;
+            case R.id.menuHelp:
+                //showing alert dialog for help
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(getResources().getString(R.string.help));
+                builder.setPositiveButton(getResources().getString(R.string.image_okay), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setMessage(getResources().getString(R.string.image_help));
+                builder.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private class ImageQuery extends AsyncTask<String, Integer, String> {
 

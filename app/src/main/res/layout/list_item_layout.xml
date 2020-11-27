@@ -7,12 +7,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingVertical="10dp"
-        android:text="List Item: " />
+        android:text="@string/list_item" />
 
     <TextView
         android:id="@+id/listTextGoesHer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List item text goes here! :)" />
+        android:text="@string/list_item_text_goes_here" />
 
 </LinearLayout>
