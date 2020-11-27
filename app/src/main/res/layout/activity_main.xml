@@ -7,18 +7,23 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Hello Space!"
+        android:text="@string/hello_space"
         android:textSize="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Before we get into the space pictures, enter your name for a custom greeting :)"
+        android:text="@string/before_we_get_into_the_space_pictures_enter_your_name_for_a_custom_greeting"
         android:textAlignment="center" />
 
     <EditText
@@ -32,27 +37,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Greet me before I see space!" />
+        android:text="@string/greet_me_before_i_see_space" />
 
     <Button
         android:id="@+id/snackbarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="How about a quick snack before we get started?" />
+        android:text="@string/how_about_a_quick_snack_before_we_get_started" />
 
     <Button
         android:id="@+id/toDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Show me a picture!" />
+        android:text="@string/show_me_a_picture" />
 
     <Button
         android:id="@+id/toListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="List of Saved Pictures" />
+        android:text="@string/list_of_saved_pictures" />
 
 </LinearLayout>

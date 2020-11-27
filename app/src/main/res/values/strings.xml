@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Mobile GUI Capstone</string>
+    <string name="this_activity_will_have_a_date_picker_object">This activity will have a date picker object:</string>
+    <string name="select_a_date">Select a Date:</string>
+    <string name="view_image">View Image:</string>
+    <string name="saved_pictures">Saved Pictures:</string>
+    <string name="hello_space">Hello Space!</string>
+    <string name="before_we_get_into_the_space_pictures_enter_your_name_for_a_custom_greeting">Before we get into the space pictures, enter your name for a custom greeting :)</string>
+    <string name="greet_me_before_i_see_space">Greet me before I see space!</string>
+    <string name="how_about_a_quick_snack_before_we_get_started">How about a quick snack before we get started?</string>
+    <string name="show_me_a_picture">Show me a picture!</string>
+    <string name="list_of_saved_pictures">List of Saved Pictures</string>
+    <string name="title">Title:</string>
+    <string name="date">Date:</string>
+    <string name="image">Image</string>
+    <string name="link_to_hd_image">Link to HD image:</string>
+    <string name="description">Description:</string>
+    <string name="list_item">List Item:</string>
+    <string name="help">Help</string>
+    <string name="list_item_text_goes_here">List item text goes here! :)</string>
+    <string name="image_help">- Select a date and press the button to get the title of image.\n
+        - Click on the title (list item) to view the image and description. </string>
+    <string name="image_okay">OKAY</string>
+    <string name="button_text_gosearch">gosearch</string>
 </resources>
