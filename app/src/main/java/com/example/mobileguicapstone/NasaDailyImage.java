@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,10 +40,16 @@ public class NasaDailyImage extends AppCompatActivity {
     TextView description;
     String date;
 
+    Button saveButton, deleteButton;
+    ImageDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.daily_image_main);
+
+        //getting database
+        database = new ImageDatabase(this);
 
         //get date from previous activity
         Bundle bundle = getIntent().getExtras();
@@ -55,6 +62,9 @@ public class NasaDailyImage extends AppCompatActivity {
         hdLink = findViewById(R.id.hdLink);
         description = findViewById(R.id.description);
 
+        //initialize save/delete buttons
+        saveButton = findViewById(R.id.saveButton);
+        deleteButton = findViewById(R.id.deleteButton);
 
         //initialize progress bar
         progress = findViewById(R.id.progress_bar);
@@ -62,8 +72,6 @@ public class NasaDailyImage extends AppCompatActivity {
 
         ImageQuery iq = new ImageQuery();
         iq.execute("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&date=" + date);
-
-
     } //end method onCreate()
 
     private class ImageQuery extends AsyncTask<String, Integer, String> {
