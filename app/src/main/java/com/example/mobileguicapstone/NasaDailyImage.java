@@ -109,8 +109,14 @@ public class NasaDailyImage extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String message = "";
+                //checks if date has already been saved ---- NOT WORKING
+//                if (imageDatabase.existsInDB(date)){
+//                    message = "Image already in database";
+//                } else {
                 imageDatabase.insertImage(date, imageTitle, imageDesc, imageHdUrl, imageUrl, "null");
-                String message = "Image for " + date + " added to database";
+                message = "Image for " + date + " added to database";
+//                }
                 Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
             }
         });
