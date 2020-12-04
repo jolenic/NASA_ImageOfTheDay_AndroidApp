@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class ListViewActivity extends AppCompatActivity {
 
     private ArrayList<String> elements;
+    private ArrayList<ImageResponse> savedImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
