@@ -65,7 +65,7 @@ public class ListViewActivity extends AppCompatActivity {
             ImageResponse ir = savedImages.get(position);
             dataToPass.putString(TITLE, ir.getTitle());
             dataToPass.putString(DATE, ir.getDate());
-            dataToPass.putString(DESCRIPTION, ir.getExplanation());
+            dataToPass.putString(DESCRIPTION, ir.getDescription());
 //            dataToPass.putString(URL, ir.getUrl());
 //            dataToPass.putString(HD_URL, ir.getHdurl());
 //            dataToPass.putString(PATH, ir.getPath());
