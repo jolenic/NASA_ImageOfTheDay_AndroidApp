@@ -63,13 +63,20 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = findViewById(R.id.navigationView);
 
+        //loading fragment for date picker
+        final ImageSearchFragment imageSearchFragment = new ImageSearchFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
+                imageSearchFragment).commit();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.goPick:
-                        Intent intent1 = new Intent(MainActivity.this, DatePicker.class);
-                        startActivity(intent1);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
+                                imageSearchFragment).commit();
+                        //Intent intent1 = new Intent(MainActivity.this, DatePicker.class);
+                        //startActivity(intent1);
                         break;
                     case R.id.goListView:
                         Intent intent2 = new Intent(MainActivity.this, ListViewActivity.class);

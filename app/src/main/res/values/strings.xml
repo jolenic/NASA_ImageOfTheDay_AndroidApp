@@ -37,4 +37,8 @@
     <string name="saveButton">SAVE</string>
     <string name="deleteButton">DELETE</string>
     <string name="version_num">3.1</string>
+    <string name="image_toast_select_date">Please select a date to search</string>
+    <string name="image_button_search">search</string>
+    <string name="image_hint_search">click here to search for a date!</string>
+    <string name="how_to_hint">Click on the date below to bring up a calendar:</string>
 </resources>
