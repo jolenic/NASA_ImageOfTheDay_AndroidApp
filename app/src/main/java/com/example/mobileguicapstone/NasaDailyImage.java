@@ -6,9 +6,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +50,7 @@ public class NasaDailyImage extends AppCompatActivity {
     TextView description;
     String date;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,9 @@ public class NasaDailyImage extends AppCompatActivity {
         hdLink = findViewById(R.id.hdLink);
         description = findViewById(R.id.description);
 
+        //initialize buttons
+        Button saveButton = findViewById(R.id.saveButton);
+        Button deleteButton = findViewById(R.id.deleteButton);
 
         //initialize progress bar
         progress = findViewById(R.id.progress_bar);
@@ -77,6 +85,19 @@ public class NasaDailyImage extends AppCompatActivity {
         iq.execute("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&date=" + date);
 
 
+        //Saving the image data to the database PLACEHOLDER, STILL NEEDS LOGIC
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        //Deleting the image data from the database PLACEHOLDER, STILL NEEDS LOGIC
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     } //end method onCreate()
 
     @Override
