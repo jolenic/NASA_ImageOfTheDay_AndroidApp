@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -63,8 +64,16 @@ public class ImageFragment extends Fragment {
         displayDescription.setText(description);
 
         //initialize buttons
-        Button saveButton = newView.findViewById(R.id.saveButton);
         Button deleteButton = newView.findViewById(R.id.deleteButton);
+        //Deleting the image data from the database PLACEHOLDER, STILL NEEDS LOGIC
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Image for " + date + " deleted";
+                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+
         return newView;
 
     }
