@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 
 //This call will return a JSON object that has a URL, DATE, and HDURL.
 //You should display the date and URL on the page, and a link to the HD image.
@@ -56,10 +57,23 @@ public class NasaDailyImage extends AppCompatActivity {
         //Load the Toolbar
         setSupportActionBar(tBar);
 
+        //check if date was passed in
+        Intent intent = getIntent();
+        if (intent.hasExtra("date")) {
+            //get date from previous activity
+            Bundle bundle = getIntent().getExtras();
+            date = bundle.getString("date");
+        } else {
+            //if no date passed, set date to current date
+            //initialize calendar to find today's date
+            Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            //this seems to be 1 lower than it should be for some reason, manually adding 1
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            date = year + "-" + (month + 1) + "-" + day;
+        }
 
-        //get date from previous activity
-        Bundle bundle = getIntent().getExtras();
-        date = bundle.getString("date");
 
         //initialize page elements
         title = findViewById(R.id.title);
