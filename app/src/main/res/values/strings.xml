@@ -25,4 +25,16 @@
     <string name="main_toolbar">Main Activity</string>
     <string name="daily_image_toolbar_header">NASA Image</string>
     <string name="date_toolbar_header">Choose A Date</string>
+    <string name="image_author_name">Jennifer Olencic and Ariella Burton</string>
+    <string name="article_version">Version: </string>
+    <string name="article_author">Author</string>
+    <string name="button_text_nasa_image">Nasa</string>
+    <string name="image_search_image">Image Search</string>
+    <string name="image_saved_image">View Saved Images</string>
+    <string name="image_saved_image1">View Daily Image</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="saveButton">SAVE</string>
+    <string name="deleteButton">DELETE</string>
+    <string name="version_num">3.1</string>
 </resources>

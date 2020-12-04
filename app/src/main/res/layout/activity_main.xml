@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -59,5 +59,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/list_of_saved_pictures" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header_nav_image"
+        app:menu="@menu/image_drawer_menu" />
 
 </LinearLayout>
