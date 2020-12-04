@@ -2,6 +2,7 @@ package com.example.mobileguicapstone;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //declaring variables for use later
+    Button nameButton;
+    EditText nameBox;
+    Button snackbarButton;
+    Button toListView;
+    Button toDatePicker;
+    SharedPreferences pref;
 
     //nav drawer
     private DrawerLayout drawerLayout;
@@ -69,11 +78,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //initialize buttons and EditText
-        Button nameButton = findViewById(R.id.nameButton);
-        EditText nameBox = findViewById(R.id.nameBox);
-        Button snackbarButton = findViewById(R.id.snackbarButton);
-        Button toListView = findViewById(R.id.toListView);
-        Button toDatePicker = findViewById(R.id.toDatePicker);
+        nameButton = findViewById(R.id.nameButton);
+        nameBox = findViewById(R.id.nameBox);
+        snackbarButton = findViewById(R.id.snackbarButton);
+        toListView = findViewById(R.id.toListView);
+        toDatePicker = findViewById(R.id.toDatePicker);
+
+        //Creating shared preference for name entered
+        pref = getSharedPreferences("prefs", MODE_PRIVATE);
+        if (pref.contains("userName")) {
+            nameBox.setText(pref.getString("userName", ""));
+        }
 
         //set clickListener for nameButton to make custom Toast greeting
         nameButton.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +126,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
     } //end method onCreate()
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //save entered name to shared preferences
+        pref = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        String name = nameBox.getText().toString();
+        editor.putString("userName", name);
+        editor.apply();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
