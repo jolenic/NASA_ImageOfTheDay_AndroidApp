@@ -23,6 +23,7 @@ public class ListViewActivity extends AppCompatActivity {
 
     private ArrayList<String> elements;
     private ArrayList<ImageResponse> savedImages;
+    ImageDatabase imageDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,15 @@ public class ListViewActivity extends AppCompatActivity {
         setSupportActionBar(tBar);
 
         //initialize elements and populate it with sample data
-        elements = new ArrayList<>();
-        elements.add("Test 1");
-        elements.add("Test 2");
-        elements.add("Test 4");
-        elements.add("OH GEEZ OH NO I LOST COUNT :(");
+//        elements = new ArrayList<>();
+//        elements.add("Test 1");
+//        elements.add("Test 2");
+//        elements.add("Test 4");
+//        elements.add("OH GEEZ OH NO I LOST COUNT :(");
+
+        imageDatabase = new ImageDatabase(this);
+        savedImages = imageDatabase.getListOfImages();
+
         //initialize ListView tools
         ListView testList = findViewById(R.id.testList);
         MyListAdapter adapter = new MyListAdapter();
@@ -61,12 +66,12 @@ public class ListViewActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return elements.size();
+            return savedImages.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return elements.get(position);
+            return savedImages.get(position);
         }
 
         @Override
@@ -84,7 +89,8 @@ public class ListViewActivity extends AppCompatActivity {
                 newView = inflater.inflate(R.layout.list_item_layout, parent, false);
             }
             TextView tView = newView.findViewById(R.id.listTextGoesHer);
-            tView.setText(getItem(position).toString());
+            ImageResponse ir = (ImageResponse) getItem(position);
+            tView.setText("Date: " + ir.getDate());
             return newView;
         }
     }

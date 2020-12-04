@@ -113,18 +113,32 @@ public class ImageDatabase extends SQLiteOpenHelper {
                 image.setPath(strPath);
                 //collecting image and adding into the list
                 images.add(image);
-            }while (cursor.moveToNext()); //moving cursor to the next if the next data
+            } while (cursor.moveToNext()); //moving cursor to the next if the next data
             //is available
         }
         return images;
     }
+
+    //check to see if record already exists in DB
+//    public boolean existsInDB(String date) {
+//        String query = "Select * from " + IMAGE_TABLE + " where " + DATE + "='" + date + "'";
+//        SQLiteDatabase database = this.getReadableDatabase();
+//        Cursor c = database.rawQuery(query, null);
+//        if(c.getCount() >= 0) {
+//            c.close();
+//            return true;
+//        }
+//        c.close();
+//        return false;
+//    }
+
 
     /**
      * Get the Image data by passing the date.
      *
      * @param date Date of the Image of the Day to be fetched
      * @return only the single element data for the Image
-     * */
+     */
     public ImageResponse getByDate(String date) {
         ImageResponse image = new ImageResponse();
 
