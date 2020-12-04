@@ -39,7 +39,6 @@ public class DatePicker extends AppCompatActivity {
         //Load the Toolbar
         setSupportActionBar(tBar);
 
-
         //initialize today button and set it to go to NasaDailyImage
         toImageButton = findViewById(R.id.toImageOfDayButton);
         toImageButton.setOnClickListener(new View.OnClickListener() {
@@ -131,5 +130,4 @@ public class DatePicker extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

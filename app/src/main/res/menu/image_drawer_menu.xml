@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/goPick"
+            android:title="@string/image_search_image" />
+        <item
+            android:id="@+id/goListView"
+            android:title="@string/image_saved_image" />
+        <item
+            android:id="@+id/goImageofDay"
+            android:title="@string/image_saved_image1" />
+    </group>
+</menu>

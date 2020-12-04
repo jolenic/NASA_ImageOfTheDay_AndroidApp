@@ -28,6 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:textAlignment="center" />
 
         <ImageView
@@ -41,6 +44,7 @@
             android:id="@+id/dateDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="@string/date"
             android:textAlignment="center" />
 
@@ -49,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/link_to_hd_image"
+            android:textStyle="italic"
             android:textAlignment="center" />
 
         <TextView
@@ -56,8 +61,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/description"
+            android:layout_marginTop="10dp"
             android:textAlignment="center" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/saveButton">
+                </Button>
+
+                <Button
+                    android:id="@+id/deleteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deleteButton">
+                </Button>
+
+            </LinearLayout>
     </LinearLayout>
 </ScrollView>
