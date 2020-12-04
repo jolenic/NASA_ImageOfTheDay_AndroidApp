@@ -2,11 +2,11 @@ package com.example.mobileguicapstone;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,12 +44,18 @@ public class NasaDailyImage extends AppCompatActivity {
     //declare variables
     ProgressBar progress;
     TextView title;
+    //database
+    protected ImageDatabase imageDatabase = new ImageDatabase(this);
     TextView dateDisplay;
+    protected SQLiteDatabase db;
     ImageView image;
+    String imageTitle;
     TextView hdLink;
-    TextView description;
     String date;
-
+    TextView description;
+    String imageUrl;
+    String imageHdUrl;
+    String imageDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +95,9 @@ public class NasaDailyImage extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                imageDatabase.insertImage(date, imageTitle, imageDesc, imageHdUrl, imageUrl, "null");
+                String message = "Image for " + date + " added to database";
+                Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
             }
         });
 
@@ -205,11 +214,15 @@ public class NasaDailyImage extends AppCompatActivity {
         @Override
         public void onPostExecute(String s) {
             title.setText(imgTitle);
+            imageTitle = imgTitle;
             dateDisplay.setText("Date: " + date);
             //image.setImageResource();
             hdLink.setText(hdUrl);
+            imageHdUrl = hdUrl;
             description.setText(explanation);
+            imageDesc = explanation;
             image.setImageBitmap(img);
+            imageUrl = imgUrl;
 
             progress.setVisibility(View.INVISIBLE);
         }

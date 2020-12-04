@@ -12,29 +12,33 @@ import java.util.ArrayList;
 
 public class ImageDatabase extends SQLiteOpenHelper {
 
-    //table strings
-    String image_table = "images";
-    String date = "date";
-    String explanation = "explaination";
-    String title = "title";
-    String hdurl = "hdurl";
-    String url = "url";
-    String path = "path";
+    //db and table strings
+    protected final static String DB_NAME = "image_database";
+    protected final static int VERSION = 1;
+    protected final static String IMAGE_TABLE = "images";
+    protected final static String DATE = "date";
+    protected final static String EXPLAINATION = "explaination";
+    protected final static String TITLE = "title";
+    protected final static String HDURL = "hdurl";
+    protected final static String URL = "url";
+    protected final static String PATH = "path";
+    //protected final static String COL_ID = "_id";
 
-    public ImageDatabase(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "image_database", null, 1);
+    //constructor
+    public ImageDatabase(@Nullable Context context) {
+        super(context, DB_NAME, null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         //creating table for the first time
-        String create_table_query = "create table " + image_table +
-                "(" + date + " text primary key, "
-                + title + " text, "
-                + explanation + " text, "
-                + hdurl + " text, "
-                + url + " text, "
-                + path + " text"
+        String create_table_query = "create table " + IMAGE_TABLE +
+                "(" + DATE + " text primary key, "
+                + TITLE + " text, "
+                + EXPLAINATION + " text, "
+                + HDURL + " text, "
+                + URL + " text, "
+                + PATH + " text"
                 + ")";
 
         db.execSQL(create_table_query);
@@ -43,8 +47,10 @@ public class ImageDatabase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //drop table on upgrade
-        String drop_table_query = "drop table " + image_table;
+        String drop_table_query = "DROP TABLE IF EXISTS " + IMAGE_TABLE;
         db.execSQL(drop_table_query);
+        //create new table
+        onCreate(db);
     }
 
     /**
@@ -62,32 +68,32 @@ public class ImageDatabase extends SQLiteOpenHelper {
         //mapping all the values into the ContentValues,
         //column name as key and parameter as value
         ContentValues contentValues = new ContentValues();
-        contentValues.put(this.date, date);
-        contentValues.put(this.title, title);
-        contentValues.put(this.explanation, explanation);
-        contentValues.put(this.hdurl, hdurl);
-        contentValues.put(this.url, url);
-        contentValues.put(this.path, path);
+        contentValues.put(this.DATE, date);
+        contentValues.put(this.TITLE, title);
+        contentValues.put(this.EXPLAINATION, explanation);
+        contentValues.put(this.HDURL, hdurl);
+        contentValues.put(this.URL, url);
+        contentValues.put(this.PATH, path);
 
         //getting database as Writable to insert the data
         SQLiteDatabase database = this.getWritableDatabase();
-        database.insert(image_table, null, contentValues);
+        database.insert(IMAGE_TABLE, null, contentValues);
     }
 
     /**
      * @return List of saved images into the database
      * */
-    public ArrayList<ImageResponse> getListOfImages(){
+    public ArrayList<ImageResponse> getListOfImages() {
         ArrayList<ImageResponse> images = new ArrayList<>();
 
         //Performing read operation on the database
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.query(image_table,
-                new String[]{date, title, explanation, hdurl, url, path},
+        Cursor cursor = database.query(IMAGE_TABLE,
+                new String[]{DATE, TITLE, EXPLAINATION, HDURL, URL, PATH},
                 null, null, null, null, null);
 
         //reading first data
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 //reading data from cursor
                 String strDate = cursor.getString(0);
@@ -119,15 +125,15 @@ public class ImageDatabase extends SQLiteOpenHelper {
      * @param date Date of the Image of the Day to be fetched
      * @return only the single element data for the Image
      * */
-    public ImageResponse getByDate(String date){
+    public ImageResponse getByDate(String date) {
         ImageResponse image = new ImageResponse();
 
         //Reading the table using cursor
         SQLiteDatabase database = this.getReadableDatabase();
-        Cursor cursor = database.query(image_table,
-                new String[]{date, title, explanation, hdurl, url, path},
-                this.date + " = ?", new String[]{date}, null, null, null);
-        if(cursor.moveToFirst()){
+        Cursor cursor = database.query(IMAGE_TABLE,
+                new String[]{date, TITLE, EXPLAINATION, HDURL, URL, PATH},
+                this.DATE + " = ?", new String[]{date}, null, null, null);
+        if (cursor.moveToFirst()) {
             do {
                 String strDate = cursor.getString(0);
                 String strTitle = cursor.getString(1);
