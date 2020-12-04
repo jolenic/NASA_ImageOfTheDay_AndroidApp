@@ -22,6 +22,54 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/hello_space"
+            android:textSize="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/before_we_get_into_the_space_pictures_enter_your_name_for_a_custom_greeting"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/nameBox"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/nameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/greet_me_before_i_see_space" />
+
+        <Button
+            android:id="@+id/snackbarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/how_about_a_quick_snack_before_we_get_started" />
+
+        <Button
+            android:id="@+id/toDatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/show_me_a_picture" />
+
+        <Button
+            android:id="@+id/toListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/list_of_saved_pictures" />
+
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"

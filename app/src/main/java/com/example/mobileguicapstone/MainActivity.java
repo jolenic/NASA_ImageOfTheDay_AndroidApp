@@ -22,22 +22,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import static com.example.mobileguicapstone.R.string.main_toolbar;
-
-//The first Milestone due on 20 November requires:
-
-//The project must have a ListView somewhere to present items.
-// Selecting an item from the ListView must show detailed information about the item selected.
-
-//The project must have at least 1 progress bar and at least 1 button.
-
-//The project must have at least 1 edit text with appropriate text input method
-// and at least 1 Toast and 1 Snackbar.
-
-//All activities must be integrated into a single working application,
-// on a single emulator, and must be uploaded to GitHub.
-
-//The functions and variables you write must be properly documented using JavaDoc comments.
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,7 +67,50 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-    }
+
+        //initialize buttons and EditText
+        Button nameButton = findViewById(R.id.nameButton);
+        EditText nameBox = findViewById(R.id.nameBox);
+        Button snackbarButton = findViewById(R.id.snackbarButton);
+        Button toListView = findViewById(R.id.toListView);
+        Button toDatePicker = findViewById(R.id.toDatePicker);
+
+        //set clickListener for nameButton to make custom Toast greeting
+        nameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Hi, " + nameBox.getText() + "!";
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //set clickListener for snackbarButton to bring up a Snackbar
+        snackbarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = "Grab a snack!";
+                Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
+            }
+        });
+
+        //set clickListener for toListView to go to ListViewActivity
+        final Intent listViewActivity = new Intent(this, ListViewActivity.class);
+        toListView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(listViewActivity);
+            }
+        });
+
+        //set clickListener for toDatePicker to go to DatePicker
+        final Intent datePicker = new Intent(this, DatePicker.class);
+        toDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(datePicker);
+            }
+        });
+
+    } //end method onCreate()
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,52 +163,5 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
- /*
-        //initialize buttons and EditText
-        nameButton = findViewById(R.id.nameButton);
-        nameBox = findViewById(R.id.nameBox);
-        snackbarButton = findViewById(R.id.snackbarButton);
-        toListView = findViewById(R.id.toListView);
-        toDatePicker = findViewById(R.id.toDatePicker);
 
-
-        //set clickListener for nameButton to make custom Toast greeting
-        nameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                message = "Hi, " + nameBox.getText() + "!";
-                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        //set clickListener for snackbarButton to bring up a Snackbar
-        snackbarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                message = "Grab a snack!";
-                Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
-            }
-        });
-
-        //set clickListener for toListView to go to ListViewActivity
-        final Intent listViewActivity = new Intent(this, ListViewActivity.class);
-        toListView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(listViewActivity);
-            }
-        });
-
-        //set clickListener for toDatePicker to go to DatePicker
-        final Intent datePicker = new Intent(this, DatePicker.class);
-        toDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(datePicker);
-            }
-        });
-
-    }
-
-    /**
-     * toolbar menu item clicks */
 }
