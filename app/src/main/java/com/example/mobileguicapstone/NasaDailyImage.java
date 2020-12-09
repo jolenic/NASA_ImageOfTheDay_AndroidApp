@@ -125,6 +125,10 @@ public class NasaDailyImage extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String message = "";
+                imageDatabase.deleteImage(date);
+                message = "Image for " + date + " deleted from database!";
+                Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
             }
         });
     } //end method onCreate()

@@ -3,7 +3,7 @@ package com.example.mobileguicapstone;
 //saves the image data into a single object to be put into the DB
 public class ImageResponse {
     String date;
-    String explanation;
+    String description;
     String title;
     String hdurl;
     String url;
@@ -12,9 +12,9 @@ public class ImageResponse {
     public ImageResponse() {
     }
 
-    public ImageResponse(String date, String explanation, String title, String hdurl, String url) {
+    public ImageResponse(String date, String description, String title, String hdurl, String url) {
         this.date = date;
-        this.explanation = explanation;
+        this.description = description;
         this.title = title;
         this.hdurl = hdurl;
         this.url = url;
@@ -28,12 +28,12 @@ public class ImageResponse {
         this.date = date;
     }
 
-    public String getExplanation() {
-        return explanation;
+    public String getDescription() {
+        return description;
     }
 
-    public void setExplanation(String explanation) {
-        this.explanation = explanation;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getTitle() {
