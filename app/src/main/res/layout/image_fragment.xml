@@ -25,12 +25,12 @@
             android:textAlignment="center"
             android:textStyle="bold" />
 
-        <!--        <ImageView-->
-        <!--            android:id="@+id/image"-->
-        <!--            android:layout_width="300dp"-->
-        <!--            android:layout_height="300dp"-->
-        <!--            android:layout_gravity="center_horizontal"-->
-        <!--            android:contentDescription="@string/image" />-->
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/image" />
 
         <TextView
             android:id="@+id/dateDisplay"
@@ -40,13 +40,13 @@
             android:text="@string/date"
             android:textAlignment="center" />
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/hdLink"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="@string/link_to_hd_image"-->
-        <!--            android:textStyle="italic"-->
-        <!--            android:textAlignment="center" />-->
+        <Button
+            android:id="@+id/hdLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/link_to_hd_image"
+            android:textAlignment="center"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/description"
@@ -56,20 +56,7 @@
             android:text="@string/description"
             android:textAlignment="center" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
 
-
-            <Button
-                android:id="@+id/deleteButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/deleteButton"></Button>
-
-        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

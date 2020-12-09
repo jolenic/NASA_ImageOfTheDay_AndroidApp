@@ -50,13 +50,6 @@
             android:text="@string/greet_me_before_i_see_space" />
 
         <Button
-            android:id="@+id/snackbarButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/how_about_a_quick_snack_before_we_get_started" />
-
-        <Button
             android:id="@+id/toDatePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

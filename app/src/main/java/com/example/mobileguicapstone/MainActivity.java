@@ -21,7 +21,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         //initialize buttons and EditText
         nameButton = findViewById(R.id.nameButton);
         nameBox = findViewById(R.id.nameBox);
-        snackbarButton = findViewById(R.id.snackbarButton);
         toListView = findViewById(R.id.toListView);
         toDatePicker = findViewById(R.id.toDatePicker);
 
@@ -99,14 +97,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //set clickListener for snackbarButton to bring up a Snackbar
-        snackbarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = "Grab a snack!";
-                Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
-            }
-        });
 
         //set clickListener for toListView to go to ListViewActivity
         final Intent listViewActivity = new Intent(this, ListViewActivity.class);
@@ -182,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage(getResources().getString(R.string.image_help));
+                builder.setMessage("Enter your name for a custom greeting, choose show me a picture or the magnifying glass to select a date, or click the globe to see today's picture.");
                 builder.show();
                 return true;
             default:

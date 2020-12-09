@@ -1,12 +1,16 @@
 package com.example.mobileguicapstone;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +30,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -51,12 +59,27 @@ public class NasaDailyImage extends AppCompatActivity {
     protected SQLiteDatabase db;
     ImageView image;
     String imageTitle;
-    TextView hdLink;
+    Button hdLink;
     String date;
     TextView description;
     String imageUrl;
+    Bitmap imageBit;
     String imageHdUrl;
     String imageDesc;
+    String fileName;
+
+    // method to save bitmap to file as jpg
+    public static File saveBitmap(Bitmap bmp, String fileName) throws IOException {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+        File f = new File(Environment.getExternalStorageDirectory()
+                + File.separator + fileName);
+        f.createNewFile();
+        FileOutputStream fo = new FileOutputStream(f);
+        fo.write(bytes.toByteArray());
+        fo.close();
+        return f;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +118,6 @@ public class NasaDailyImage extends AppCompatActivity {
 
         //initialize buttons
         Button saveButton = findViewById(R.id.saveButton);
-        Button deleteButton = findViewById(R.id.deleteButton);
 
         //initialize progress bar
         progress = findViewById(R.id.progress_bar);
@@ -105,33 +127,60 @@ public class NasaDailyImage extends AppCompatActivity {
         iq.execute("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&date=" + date);
 
 
+        //click listener for link to hd image
+        hdLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                browserIntent.setData(Uri.parse(imageHdUrl));
+                startActivity(browserIntent);
+            }
+        });
+
         //Saving the image data to the database PLACEHOLDER, STILL NEEDS LOGIC
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String message = "";
-                //checks if date has already been saved ---- NOT WORKING
-//                if (imageDatabase.existsInDB(date)){
-//                    message = "Image already in database";
-//                } else {
-                imageDatabase.insertImage(date, imageTitle, imageDesc, imageHdUrl, imageUrl, "null");
-                message = "Image for " + date + " added to database";
+
+                //save image
+                fileName = date + ".jpg";
+//                try {
+//                    File imgFile = saveBitmap(imageBit, fileName);
+//                    Log.d("File created: ", String.valueOf(imgFile.exists()));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
 //                }
+
+                FileOutputStream outputStream = null;
+                try {
+                    outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                    imageBit.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
+                    outputStream.flush();
+                    outputStream.close();
+                    Log.d("File created: ", String.valueOf(fileExistance(fileName)));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                imageDatabase.insertImage(date, imageTitle, imageDesc, imageHdUrl, imageUrl, fileName);
+                message = "Image for " + date + " added to database";
                 Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
             }
         });
 
-        //Deleting the image data from the database PLACEHOLDER, STILL NEEDS LOGIC
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = "";
-                imageDatabase.deleteImage(date);
-                message = "Image for " + date + " deleted from database!";
-                Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
-            }
-        });
+
     } //end method onCreate()
+
+    //check if file exists already
+    public boolean fileExistance(String fname) {
+        File file = getBaseContext().getFileStreamPath(fname);
+        Log.i("File exists in memory", String.valueOf(file.exists()));
+        return file.exists();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -239,9 +288,10 @@ public class NasaDailyImage extends AppCompatActivity {
         public void onPostExecute(String s) {
             title.setText(imgTitle);
             imageTitle = imgTitle;
+            imageBit = img;
             dateDisplay.setText("Date: " + date);
             //image.setImageResource();
-            hdLink.setText(hdUrl);
+//            hdLink.setText(hdUrl);
             imageHdUrl = hdUrl;
             description.setText(explanation);
             imageDesc = explanation;
