@@ -8,16 +8,18 @@ public class ImageResponse {
     String hdurl;
     String url;
     String path;
+    int id;
 
     public ImageResponse() {
     }
 
-    public ImageResponse(String date, String description, String title, String hdurl, String url) {
+    public ImageResponse(String date, String description, String title, String hdurl, String url, int id) {
         this.date = date;
         this.description = description;
         this.title = title;
         this.hdurl = hdurl;
         this.url = url;
+        this.id = id;
     }
 
     public String getDate() {
@@ -66,6 +68,14 @@ public class ImageResponse {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

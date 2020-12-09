@@ -14,7 +14,7 @@ public class ImageDatabase extends SQLiteOpenHelper {
 
     //db and table strings
     protected final static String DB_NAME = "image_database";
-    protected final static int VERSION = 1;
+    protected final static int VERSION = 3;
     protected final static String IMAGE_TABLE = "images";
     protected final static String DATE = "date";
     protected final static String DESCRIPTION = "explaination";
@@ -22,7 +22,7 @@ public class ImageDatabase extends SQLiteOpenHelper {
     protected final static String HDURL = "hdurl";
     protected final static String URL = "url";
     protected final static String PATH = "path";
-    //protected final static String COL_ID = "_id";
+    protected final static String COL_ID = "_id";
 
     //constructor
     public ImageDatabase(@Nullable Context context) {
@@ -33,7 +33,8 @@ public class ImageDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //creating table for the first time
         String create_table_query = "create table " + IMAGE_TABLE +
-                "(" + DATE + " text primary key, "
+                "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DATE + " text, "
                 + TITLE + " text, "
                 + DESCRIPTION + " text, "
                 + HDURL + " text, "
@@ -89,22 +90,24 @@ public class ImageDatabase extends SQLiteOpenHelper {
         //Performing read operation on the database
         SQLiteDatabase database = this.getReadableDatabase();
         Cursor cursor = database.query(IMAGE_TABLE,
-                new String[]{DATE, TITLE, DESCRIPTION, HDURL, URL, PATH},
+                new String[]{COL_ID, DATE, TITLE, DESCRIPTION, HDURL, URL, PATH},
                 null, null, null, null, null);
 
         //reading first data
         if (cursor.moveToFirst()) {
             do {
                 //reading data from cursor
-                String strDate = cursor.getString(0);
-                String strTitle = cursor.getString(1);
-                String strEx = cursor.getString(2);
-                String strHDUrl = cursor.getString(3);
-                String strUrl = cursor.getString(4);
-                String strPath = cursor.getString(5);
+                int dbId = cursor.getInt(0);
+                String strDate = cursor.getString(1);
+                String strTitle = cursor.getString(2);
+                String strEx = cursor.getString(3);
+                String strHDUrl = cursor.getString(4);
+                String strUrl = cursor.getString(5);
+                String strPath = cursor.getString(6);
 
                 //holding cursor data to the ImageResponse object
                 ImageResponse image = new ImageResponse();
+                image.setId(dbId);
                 image.setDate(strDate);
                 image.setTitle(strTitle);
                 image.setDescription(strEx);
@@ -161,19 +164,24 @@ public class ImageDatabase extends SQLiteOpenHelper {
                 image.setHdurl(strHDUrl);
                 image.setUrl(strUrl);
                 image.setPath(strPath);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return image;
     }
+
     /**
      * Deleting the record from the table where matched record is found
+     *
      * @param date Date of the Image of the day
-     * */
-    public int deleteImage(String date){
+     */
+//    public int deleteImage(int id){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        return db.delete(IMAGE_TABLE,
+//                this.DATE + " = ? ",
+//                new String[]{date});
+//    }
+    protected void deleteImage(ImageResponse img) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(IMAGE_TABLE,
-                this.DATE + " = ? ",
-                new String[]{date});
-
+        db.delete(IMAGE_TABLE, COL_ID + "= ?", new String[]{Long.toString(img.getId())});
     }
 }

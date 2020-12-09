@@ -1,16 +1,23 @@
 package com.example.mobileguicapstone;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class ImageFragment extends Fragment {
 
@@ -22,6 +29,8 @@ public class ImageFragment extends Fragment {
     private static final String URL = "url";
     private static final String HD_URL = "hdUrl";
     private static final String PATH = "path";
+    protected final static String COL_ID = "_id";
+
     private Bundle dataFromActivity;
     // TODO: Rename and change types of parameters
     private String title;
@@ -30,6 +39,7 @@ public class ImageFragment extends Fragment {
     private String url;
     private String hdUrl;
     private String path;
+    private int id;
 
     private AppCompatActivity parentActivity;
 
@@ -44,9 +54,10 @@ public class ImageFragment extends Fragment {
             title = dataFromActivity.getString(TITLE);
             date = dataFromActivity.getString(DATE);
             description = dataFromActivity.getString(DESCRIPTION);
-//            url = getArguments().getString(URL);
-//            hdUrl = getArguments().getString(HD_URL);
-//            path = getArguments().getString(PATH);
+            url = getArguments().getString(URL);
+            hdUrl = getArguments().getString(HD_URL);
+            path = getArguments().getString(PATH);
+            id = getArguments().getInt(COL_ID);
         }
 
         View newView = inflater.inflate(R.layout.image_fragment, container, false);
@@ -56,10 +67,22 @@ public class ImageFragment extends Fragment {
         displayTitle.setText(title);
         TextView dateDisplay = newView.findViewById(R.id.dateDisplay);
         dateDisplay.setText(date);
-//        ImageView image = container.findViewById(R.id.image);
-//        //deal with this once i actually save the images
-//        TextView hdLink = container.findViewById(R.id.hdLink);
-//        hdLink.setText(hdUrl);
+
+        //display saved image
+        ImageView image = newView.findViewById(R.id.image);
+        FileInputStream fis = null;
+
+        try {
+            File file = parentActivity.getBaseContext().getFileStreamPath(path);
+            FileInputStream input = getActivity().openFileInput(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Bitmap imgBit = BitmapFactory.decodeStream(fis);
+        image.setImageBitmap(imgBit);
+
+        TextView hdLink = newView.findViewById(R.id.hdLink);
+        hdLink.setText(hdUrl);
         TextView displayDescription = newView.findViewById(R.id.description);
         displayDescription.setText(description);
 

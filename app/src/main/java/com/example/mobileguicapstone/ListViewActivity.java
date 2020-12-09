@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 
 public class ListViewActivity extends AppCompatActivity {
 
-    private ArrayList<String> elements;
     private ArrayList<ImageResponse> savedImages;
     ImageDatabase imageDatabase;
 
@@ -32,6 +32,13 @@ public class ListViewActivity extends AppCompatActivity {
     private static final String URL = "url";
     private static final String HD_URL = "hdUrl";
     private static final String PATH = "path";
+    private final static String COL_ID = "_id";
+
+    //get result from activity
+    private static final int REQ_DEL = 1;
+    private static final int YES_DEL = 2;
+
+    MyListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +50,12 @@ public class ListViewActivity extends AppCompatActivity {
         //Load the Toolbar
         setSupportActionBar(tBar);
 
-        //initialize elements and populate it with sample data
-//        elements = new ArrayList<>();
-//        elements.add("Test 1");
-//        elements.add("Test 2");
-//        elements.add("Test 4");
-//        elements.add("OH GEEZ OH NO I LOST COUNT :(");
-
         imageDatabase = new ImageDatabase(this);
         savedImages = imageDatabase.getListOfImages();
 
         //initialize ListView tools
         ListView testList = findViewById(R.id.testList);
-        MyListAdapter adapter = new MyListAdapter();
+        adapter = new MyListAdapter();
         testList.setAdapter(adapter);
 
         //Item Click Listener will pop up an alert dialog with extra info about the item
@@ -66,22 +66,41 @@ public class ListViewActivity extends AppCompatActivity {
             dataToPass.putString(TITLE, ir.getTitle());
             dataToPass.putString(DATE, ir.getDate());
             dataToPass.putString(DESCRIPTION, ir.getDescription());
-//            dataToPass.putString(URL, ir.getUrl());
-//            dataToPass.putString(HD_URL, ir.getHdurl());
-//            dataToPass.putString(PATH, ir.getPath());
+            dataToPass.putString(URL, ir.getUrl());
+            dataToPass.putString(HD_URL, ir.getHdurl());
+            dataToPass.putString(PATH, ir.getPath());
+            dataToPass.putInt(COL_ID, ir.getId());
             Intent nextActivity = new Intent(ListViewActivity.this, EmptyActivity.class);
             nextActivity.putExtras(dataToPass);
             startActivity(nextActivity);
+        });
 
+        //Long click to delete
+        testList.setOnItemLongClickListener((list, item, position, id) -> {
 
-//            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-//            alertDialogBuilder.setTitle("More Info Placeholder")
-//                    //What is the message:
-//                    .setMessage("The selected item is: " + position + ".")
-//                    //Show the dialog
-//                    .create().show();
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Do you want to delete this?")
+
+                    //What is the message:
+                    .setMessage("Delete saved image for " + savedImages.get(position).getDate() + "?")
+
+                    //what the Yes button does:
+                    .setPositiveButton("Yes", (click, arg) -> {
+                        imageDatabase.deleteImage(savedImages.get(position));
+                        savedImages.remove(position);
+                        adapter.notifyDataSetChanged();
+                        String message = "Image deleted";
+                        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                    })
+                    //What the No button does:
+                    .setNegativeButton("No", (click, arg) -> {
+                    })
+                    //Show the dialog
+                    .create().show();
+            return true;
         });
     }
+
 
     private class MyListAdapter extends BaseAdapter {
 
@@ -97,8 +116,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            //Will need to change when using DB
-            return (long) position;
+            return (long) savedImages.get(position).getId();
         }
 
         @Override

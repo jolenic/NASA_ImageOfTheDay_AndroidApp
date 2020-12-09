@@ -64,26 +64,13 @@
             android:layout_marginTop="10dp"
             android:textAlignment="center" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
 
-                <Button
+        <Button
                     android:id="@+id/saveButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/saveButton">
                 </Button>
 
-                <Button
-                    android:id="@+id/deleteButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/deleteButton">
-                </Button>
-
-            </LinearLayout>
     </LinearLayout>
 </ScrollView>
