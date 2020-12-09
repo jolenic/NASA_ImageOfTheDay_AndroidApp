@@ -79,16 +79,16 @@ public class ImageFragment extends Fragment {
 
         //display saved image
         ImageView image = newView.findViewById(R.id.image);
-        FileInputStream fis = null;
 
+        FileInputStream fis = null;
         try {
-            File file = parentActivity.getBaseContext().getFileStreamPath(path);
-            FileInputStream input = getActivity().openFileInput(path);
+            fis = getContext().openFileInput(path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         Bitmap imgBit = BitmapFactory.decodeStream(fis);
         image.setImageBitmap(imgBit);
+
 
         //set up Hd Link
         Button hdLink = newView.findViewById(R.id.hdLink);

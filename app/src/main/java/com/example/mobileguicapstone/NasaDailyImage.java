@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -65,6 +67,19 @@ public class NasaDailyImage extends AppCompatActivity {
     String imageHdUrl;
     String imageDesc;
     String fileName;
+
+    // method to save bitmap to file as jpg
+    public static File saveBitmap(Bitmap bmp, String fileName) throws IOException {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+        File f = new File(Environment.getExternalStorageDirectory()
+                + File.separator + fileName);
+        f.createNewFile();
+        FileOutputStream fo = new FileOutputStream(f);
+        fo.write(bytes.toByteArray());
+        fo.close();
+        return f;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +144,13 @@ public class NasaDailyImage extends AppCompatActivity {
                 String message = "";
 
                 //save image
-                fileName = date + ".png";
+                fileName = date + ".jpg";
+//                try {
+//                    File imgFile = saveBitmap(imageBit, fileName);
+//                    Log.d("File created: ", String.valueOf(imgFile.exists()));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
                 FileOutputStream outputStream = null;
                 try {
@@ -137,6 +158,7 @@ public class NasaDailyImage extends AppCompatActivity {
                     imageBit.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
                     outputStream.flush();
                     outputStream.close();
+                    Log.d("File created: ", String.valueOf(fileExistance(fileName)));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
