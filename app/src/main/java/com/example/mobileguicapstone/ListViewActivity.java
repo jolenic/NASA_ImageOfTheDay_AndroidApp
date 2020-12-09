@@ -168,7 +168,7 @@ public class ListViewActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage(getResources().getString(R.string.image_help));
+                builder.setMessage("Click on an item to see saved image and info.  Long click to delete.");
                 builder.show();
                 return true;
             default:

@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage(getResources().getString(R.string.image_help));
+                builder.setMessage("Enter your name for a custom greeting, choose show me a picture or the magnifying glass to select a date, or click the globe to see today's picture.");
                 builder.show();
                 return true;
             default:

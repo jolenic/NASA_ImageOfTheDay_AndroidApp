@@ -123,7 +123,7 @@ public class DatePicker extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage(getResources().getString(R.string.image_help));
+                builder.setMessage("Choose a date to view that picture");
                 builder.show();
                 return true;
             default:

@@ -100,7 +100,6 @@ public class NasaDailyImage extends AppCompatActivity {
 
         //initialize buttons
         Button saveButton = findViewById(R.id.saveButton);
-        Button deleteButton = findViewById(R.id.deleteButton);
 
         //initialize progress bar
         progress = findViewById(R.id.progress_bar);
