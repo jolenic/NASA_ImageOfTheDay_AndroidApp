@@ -1,12 +1,16 @@
 package com.example.mobileguicapstone;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +45,13 @@ public class ImageFragment extends Fragment {
 
     private AppCompatActivity parentActivity;
 
+
+    //check if file exists already
+    public boolean fileExistance(String fname) {
+        File file = parentActivity.getBaseContext().getFileStreamPath(fname);
+        Log.i("File exists in memory", String.valueOf(file.exists()));
+        return file.exists();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,8 +90,19 @@ public class ImageFragment extends Fragment {
         Bitmap imgBit = BitmapFactory.decodeStream(fis);
         image.setImageBitmap(imgBit);
 
-        TextView hdLink = newView.findViewById(R.id.hdLink);
-        hdLink.setText(hdUrl);
+        //set up Hd Link
+        Button hdLink = newView.findViewById(R.id.hdLink);
+        //click listener for link to hd image
+        hdLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                browserIntent.setData(Uri.parse(hdUrl));
+                startActivity(browserIntent);
+            }
+        });
+
+
         TextView displayDescription = newView.findViewById(R.id.description);
         displayDescription.setText(description);
 

@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,7 +57,7 @@ public class NasaDailyImage extends AppCompatActivity {
     protected SQLiteDatabase db;
     ImageView image;
     String imageTitle;
-    TextView hdLink;
+    Button hdLink;
     String date;
     TextView description;
     String imageUrl;
@@ -109,6 +112,16 @@ public class NasaDailyImage extends AppCompatActivity {
         iq.execute("https://api.nasa.gov/planetary/apod?api_key=" + API_KEY + "&date=" + date);
 
 
+        //click listener for link to hd image
+        hdLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                browserIntent.setData(Uri.parse(imageHdUrl));
+                startActivity(browserIntent);
+            }
+        });
+
         //Saving the image data to the database PLACEHOLDER, STILL NEEDS LOGIC
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +129,7 @@ public class NasaDailyImage extends AppCompatActivity {
                 String message = "";
 
                 //save image
-                fileName = date + ".jpg";
+                fileName = date + ".png";
 
                 FileOutputStream outputStream = null;
                 try {
@@ -140,12 +153,12 @@ public class NasaDailyImage extends AppCompatActivity {
 
     } //end method onCreate()
 
-//    //check if file exists already
-//    public boolean fileExistance(String fname){
-//        File file = getBaseContext().getFileStreamPath(fname);
-//        Log.i("File exists in memory", String.valueOf(file.exists()));
-//        return file.exists();
-//    }
+    //check if file exists already
+    public boolean fileExistance(String fname) {
+        File file = getBaseContext().getFileStreamPath(fname);
+        Log.i("File exists in memory", String.valueOf(file.exists()));
+        return file.exists();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -256,7 +269,7 @@ public class NasaDailyImage extends AppCompatActivity {
             imageBit = img;
             dateDisplay.setText("Date: " + date);
             //image.setImageResource();
-            hdLink.setText(hdUrl);
+//            hdLink.setText(hdUrl);
             imageHdUrl = hdUrl;
             description.setText(explanation);
             imageDesc = explanation;
