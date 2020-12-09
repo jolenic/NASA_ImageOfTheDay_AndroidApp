@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ListViewActivity extends AppCompatActivity {
@@ -86,9 +87,16 @@ public class ListViewActivity extends AppCompatActivity {
 
                     //what the Yes button does:
                     .setPositiveButton("Yes", (click, arg) -> {
+                        //delete image file
+                        File file = new File(savedImages.get(position).getPath());
+                        boolean deleted = file.delete();
+                        //delete from database
                         imageDatabase.deleteImage(savedImages.get(position));
+                        //remove from list
                         savedImages.remove(position);
+                        //notify adapter
                         adapter.notifyDataSetChanged();
+                        //toast message to confirm deletion
                         String message = "Image deleted";
                         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                     })
