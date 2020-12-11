@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         nameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String message = "Hi, " + nameBox.getText() + "!";
+                String message = getResources().getString(R.string.hi) + nameBox.getText() + "!";
                 Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage("Enter your name for a custom greeting, choose show me a picture or the magnifying glass to select a date, or click the globe to see today's picture.");
+                builder.setMessage(getResources().getString(R.string.help_main));
                 builder.show();
                 return true;
             default:

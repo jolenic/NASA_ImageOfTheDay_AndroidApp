@@ -5,6 +5,7 @@
     <string name="view_image">View Image:</string>
     <string name="saved_pictures">Saved Images</string>
     <string name="hello_space">Hello Space!</string>
+    <string name="hi">Hi</string>
     <string name="before_we_get_into_the_space_pictures_enter_your_name_for_a_custom_greeting">Before we get into the space pictures, enter your name for a custom greeting :)</string>
     <string name="greet_me_before_i_see_space">Greet me before I see space!</string>
     <string name="how_about_a_quick_snack_before_we_get_started">How about a quick snack before we get started?</string>
@@ -42,4 +43,16 @@
     <string name="howtodelete">Click and hold on an image to delete it from the saved images list!</string>
     <string name="listview">ListView</string>
     <string name="image_of_the_day">Image of the Day</string>
+
+    <string name="help_list">Click on an item to see saved image and info.  Long click to delete.</string>
+    <string name="help_main">Enter your name for a custom greeting, choose show me a picture or the magnifying glass to select a date, or click the globe to see today\'s picture.</string>
+    <string name="help_datepicker">Choose a date to view that picture</string>
+    <string name="date_selected">Date Selected: </string>
+
+    <string name="want_to_delete">Do you want to delete this?</string>
+    <string name="delete_image_for">Delete saved image for </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="image_deleted">Image Deleted</string>
+    <string name="image_saved">Image Saved: </string>
 </resources>

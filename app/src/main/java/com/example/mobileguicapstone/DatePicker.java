@@ -63,7 +63,7 @@ public class DatePicker extends AppCompatActivity {
 
         //Display Chosen Date
         TextView showDate = findViewById(R.id.showDate);
-        showDate.setText("Date Selected: " + date);
+        showDate.setText(getResources().getString(R.string.date_selected) + date);
 
         //initialize button to bring up date picker
         datePickerFragmentButton = findViewById(R.id.datePickerFragmentButton);
@@ -83,7 +83,7 @@ public class DatePicker extends AppCompatActivity {
                 //changes display date to chosen date
                 date = year + "-" + (month + 1) + "-" + day;
                 Log.d(TAG, "onDateSet: date: " + date);
-                showDate.setText("Date Selected: " + date);
+                showDate.setText(getString(R.string.date_selected) + date);
             }
         };
 
@@ -123,7 +123,7 @@ public class DatePicker extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage("Choose a date to view that picture");
+                builder.setMessage(getResources().getString(R.string.help_datepicker));
                 builder.show();
                 return true;
             default:
