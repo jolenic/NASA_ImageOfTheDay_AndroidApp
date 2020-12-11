@@ -167,7 +167,7 @@ public class NasaDailyImage extends AppCompatActivity {
 
 
                 imageDatabase.insertImage(date, imageTitle, imageDesc, imageHdUrl, imageUrl, fileName);
-                message = "Image for " + date + " added to database";
+                message = getResources().getString(R.string.image_saved) + date;
                 Snackbar.make(v, message, Snackbar.LENGTH_LONG).show();
             }
         });

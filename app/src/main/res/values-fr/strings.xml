@@ -41,4 +41,15 @@
     <string name="hello_blank_fragment">Bonjour, fragment vierge!</string>
     <string name="listview">Liste</string>
     <string name="image_of_the_day">Image Quotidienne</string>
+    <string name="help_list">Cliquez sur un élément pour voir l\'image et les informations enregistrées. Cliquez longuement pour supprimer.</string>
+    <string name="help_main">Entrez votre nom pour un message d\'accueil personnalisé, choisissez montre-moi une photo ou la loupe pour sélectionner une date, ou cliquez sur le globe pour voir l\'image d\'aujourd\'hui.</string>
+    <string name="help_datepicker">Choisissez une date pour voir cette photo</string>
+    <string name="hi">Bonjour</string>
+    <string name="date_selected">Date sélectionnée: </string>
+    <string name="want_to_delete">Voulez-vous le supprimer?</string>
+    <string name="delete_image_for">Supprimer l\'image enregistrée pour </string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="image_deleted">Image supprimée</string>
+    <string name="image_saved">Image enregistrée: </string>
 </resources>

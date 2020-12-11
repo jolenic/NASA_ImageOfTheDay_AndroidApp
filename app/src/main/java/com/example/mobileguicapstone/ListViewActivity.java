@@ -80,13 +80,13 @@ public class ListViewActivity extends AppCompatActivity {
         testList.setOnItemLongClickListener((list, item, position, id) -> {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Do you want to delete this?")
+            alertDialogBuilder.setTitle(getResources().getString(R.string.want_to_delete))
 
                     //What is the message:
-                    .setMessage("Delete saved image for " + savedImages.get(position).getDate() + "?")
+                    .setMessage(getResources().getString(R.string.delete_image_for) + savedImages.get(position).getDate() + "?")
 
                     //what the Yes button does:
-                    .setPositiveButton("Yes", (click, arg) -> {
+                    .setPositiveButton(R.string.yes, (click, arg) -> {
                         //delete image file
                         File file = new File(savedImages.get(position).getPath());
                         boolean deleted = file.delete();
@@ -97,11 +97,11 @@ public class ListViewActivity extends AppCompatActivity {
                         //notify adapter
                         adapter.notifyDataSetChanged();
                         //toast message to confirm deletion
-                        String message = "Image deleted";
+                        String message = getResources().getString(R.string.image_deleted);
                         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
                     })
                     //What the No button does:
-                    .setNegativeButton("No", (click, arg) -> {
+                    .setNegativeButton(R.string.no, (click, arg) -> {
                     })
                     //Show the dialog
                     .create().show();
@@ -176,7 +176,7 @@ public class ListViewActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                builder.setMessage("Click on an item to see saved image and info.  Long click to delete.");
+                builder.setMessage(getResources().getString(R.string.help_list));
                 builder.show();
                 return true;
             default:
