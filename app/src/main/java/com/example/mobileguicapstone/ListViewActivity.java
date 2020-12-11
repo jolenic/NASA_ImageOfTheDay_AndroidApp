@@ -137,7 +137,7 @@ public class ListViewActivity extends AppCompatActivity {
             }
             TextView tView = newView.findViewById(R.id.listTextGoesHer);
             ImageResponse ir = (ImageResponse) getItem(position);
-            tView.setText("Date: " + ir.getDate());
+            tView.setText(" Date: " + ir.getDate());
             return newView;
         }
     }

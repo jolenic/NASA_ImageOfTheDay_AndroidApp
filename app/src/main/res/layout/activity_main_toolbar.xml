@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/hello_space"
-            android:textSize="40dp" />
+            android:textSize="40sp" />
 
         <TextView
             android:layout_width="wrap_content"

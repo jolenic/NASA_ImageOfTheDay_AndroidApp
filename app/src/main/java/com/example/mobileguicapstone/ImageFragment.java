@@ -1,6 +1,7 @@
 package com.example.mobileguicapstone;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,13 +9,18 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import java.io.File;
@@ -57,7 +63,6 @@ public class ImageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         dataFromActivity = getArguments();
         if (dataFromActivity != null) {
             title = dataFromActivity.getString(TITLE);
@@ -69,7 +74,13 @@ public class ImageFragment extends Fragment {
             id = getArguments().getInt(COL_ID);
         }
 
+
         View newView = inflater.inflate(R.layout.image_fragment, container, false);
+        Toolbar mToolbar = newView.findViewById(R.id.toolbar);
+        mToolbar.inflateMenu(R.menu.image_toolbar_menu);
+        mToolbar.inflateMenu(R.menu.image_drawer_menu);
+
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mToolbar);
 
         //initialize page elements
         TextView displayTitle = newView.findViewById(R.id.title);
