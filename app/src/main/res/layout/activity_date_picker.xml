@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:text="@string/this_activity_will_have_a_date_picker_object" />
 
     <Button

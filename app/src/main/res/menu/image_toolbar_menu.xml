@@ -6,19 +6,19 @@
         android:id="@+id/goPick"
         android:icon="@drawable/search"
         android:title="@string/button_text_gosearch"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/goListView"
         android:icon="@drawable/list"
         app:showAsAction="always"
-        android:title="ListView" />
+        android:title="@string/listview" />
 
     <item
         android:id="@+id/goImageofDay"
         android:icon="@drawable/globe"
         app:showAsAction="always"
-        android:title="Image of the Day" />
+        android:title="@string/image_of_the_day" />
 
     <item
         android:id="@+id/menuHelp"
